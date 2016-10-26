@@ -5,8 +5,11 @@
 
 username=ubuntu
 
-# Copy commtest.c to pi1 host and then compile it
-scp -i $keyfile ../benchmark_codes/communication_test/commtest.c $username@$ip1:
+# Remove any previously existing commtest.c file on ip1 host
+ssh -i $keyfile $username@$ip1 "rm -f commtest.c"
+
+# Copy commtest.c to ip1 host and then compile it
+scp -i $keyfile ../benchmark-codes/communication_test/commtest.c $username@$ip1:
 ssh -i $keyfile $username@$ip1 "rm -f a.out && mpicc -O3 commtest.c && ls -lrt"
 
 # Copy executable a.out to ip2 host

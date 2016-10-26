@@ -5,6 +5,9 @@
 
 username=ubuntu
 
+# Remove any previously existing testprog.c file on ip1 host
+ssh -i $keyfile $username@$ip1 "rm -f testprog.c"
+
 # Copy testprog.c to ip1 host and then compile it
 scp -i $keyfile testprog.c $username@$ip1:
 ssh -i $keyfile $username@$ip1 "mpicc testprog.c && ls -lrt"
