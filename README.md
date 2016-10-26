@@ -1,2 +1,7 @@
 # cloud-tests
-Repository intended for test scripts and similar things related to performance tests and other kinds of tests of cloud systems, e.g. Smog at UPPMAX.
+
+Repository intended for test scripts and similar things related to
+performance tests and other kinds of tests of cloud systems, e.g. Smog
+at UPPMAX.
+
+Created by Elias Rudberg in October 2016.
