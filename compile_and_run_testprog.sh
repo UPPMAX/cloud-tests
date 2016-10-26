@@ -1,16 +1,7 @@
 #!/bin/bash
 
-if [ "$#" -ne 5 ]; then
-    echo "Please give 5 arguments: ip1 ip1_internal ip2 ip2_internal keyfile"
-    exit 1;
-fi
-
-# ip1 and ip2 below are the "Floating IPs" of the two instances
-ip1=$1
-ip1_internal=$2
-ip2=$3
-ip2_internal=$4
-keyfile=$5
+# Get ip1 ip1_internal ip2 ip2_internal keyfile by sourcing set_ips_and_keyfile.sh
+. set_ips_and_keyfile.sh
 
 username=ubuntu
 
