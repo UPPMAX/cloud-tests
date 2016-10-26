@@ -6,6 +6,8 @@ at UPPMAX.
 
 Created by Elias Rudberg in October 2016.
 
+Tested for instances created from the the Ubuntu-16.04 image on Smog.
+
 To use these scripts, do as follows:
 
 (1) Edit set_ips_and_keyfile.sh to add the IP addresses of the
