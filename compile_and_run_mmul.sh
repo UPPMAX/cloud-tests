@@ -27,7 +27,7 @@ scp -i $keyfile test_matrix_manager cht_worker $username@$ip2: || exit 1
 rm test_matrix_manager cht_worker || exit 1
 
 echo "Running test_matrix_manager with mpirun now..."
-ssh -i $keyfile $username@$ip1 "mpirun --bind-to none -np 1 -host $ip1_internal,$ip2_internal,$ip1_internal,$ip2_internal ./test_matrix_manager 2000 2 1 > stdout.txt" || exit 1
+ssh -i $keyfile $username@$ip1 "mpirun --bind-to none -np 1 -host $ip1_internal,$ip2_internal,$ip1_internal,$ip2_internal ./test_matrix_manager 2000 2 1 0.5 > stdout.txt" || exit 1
 
 # Copy result files
 scp -i $keyfile $username@$ip1:stdout.txt . || exit 1
