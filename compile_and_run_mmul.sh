@@ -5,8 +5,8 @@
 
 username=ubuntu
 
-# Remove any previously existing test_matrix_manager and cht_worker files on ip1 host
-ssh -i $keyfile $username@$ip1 "rm -f test_matrix_manager cht_worker"
+# Remove any previously existing test_matrix_manager cht_worker stdout.txt output.txt files on ip1 host
+ssh -i $keyfile $username@$ip1 "rm -f test_matrix_manager cht_worker stdout.txt output.txt"
 
 # Get code from github
 ssh -i $keyfile $username@$ip1 "rm -rf git_tmp ; mkdir git_tmp ; cd git_tmp ; git clone https://github.com/UPPMAX/benchmark-codes.git" || exit 1
@@ -24,6 +24,10 @@ scp -i $keyfile test_matrix_manager cht_worker $username@$ip2: || exit 1
 rm test_matrix_manager cht_worker || exit 1
 
 echo "Running test_matrix_manager with mpirun now..."
-ssh -i $keyfile $username@$ip1 "time mpirun -np 1 -host $ip1_internal,$ip2_internal,$ip1_internal,$ip2_internal ./test_matrix_manager 800 2" || exit 1
+ssh -i $keyfile $username@$ip1 "time mpirun -np 1 -host $ip1_internal,$ip2_internal,$ip1_internal,$ip2_internal ./test_matrix_manager 1600 2 > stdout.txt" || exit 1
+
+# Copy result files
+scp -i $keyfile $username@$ip1:stdout.txt . || exit 1
+scp -i $keyfile $username@$ip1:output.txt . || exit 1
 
 echo ; echo compile_and_run_mmul.sh done.
