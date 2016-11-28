@@ -9,7 +9,7 @@ username=ubuntu
 ssh -i $keyfile $username@$ip1 "rm -f stdout.txt output.txt"
 
 echo "Running test_matrix_manager with mpirun now..."
-ssh -i $keyfile $username@$ip1 "time mpirun -np 1 -host $ip1_internal,$ip2_internal,$ip1_internal,$ip2_internal ./test_matrix_manager 2000 2 > stdout.txt" || exit 1
+ssh -i $keyfile $username@$ip1 "mpirun --bind-to none -np 1 -host $ip1_internal,$ip2_internal,$ip1_internal,$ip2_internal ./test_matrix_manager 2000 2 1 > stdout.txt" || exit 1
 
 # Copy result files
 scp -i $keyfile $username@$ip1:stdout.txt . || exit 1
